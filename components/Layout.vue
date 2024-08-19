@@ -3,15 +3,15 @@
 </script>
 
 <template>
-<div>
-  <header>header</header>
-  <div>
-    <div>menu</div>
-    <slot/>
-  </div>
-</div>
+    <div>
+        <header>header</header>
+        <div>
+            <div>menu</div>
+            <slot />
+        </div>
+    </div>
 </template>
 
 <style scoped>
 
-</style>
+</style>ß

@@ -1,10 +1,10 @@
 <template>
-  <div>
-    login
-  </div>
+    <div>
+        login
+    </div>
 </template>
 <script setup>
 definePageMeta({
-  layout: ''
-})
+    layout: '',
+});
 </script>
