@@ -1,9 +1,10 @@
 <template>
   <div>
-    <NuxtLayout>
-        <NuxtPage/>
-    </NuxtLayout>
+    login
   </div>
 </template>
 <script setup>
+definePageMeta({
+  layout: ''
+})
 </script>
