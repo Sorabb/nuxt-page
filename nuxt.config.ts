@@ -4,6 +4,9 @@ export default defineNuxtConfig({
   app: {
     buildAssetsDir: '/static/',
   },
+  experimental: {
+    payloadExtraction: false,
+  },
   devtools: { enabled: true },
   devServer: {
     port: 11345,
