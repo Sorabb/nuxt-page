@@ -1,5 +1,12 @@
 <script setup lang="ts">
-
+import axios from 'axios'
+function contactForm() {
+    axios.post('/api/user')
+        .then((res) => {
+            console.log('GET MOCK USER====', res.data)
+        })
+}
+contactForm()
 </script>
 
 <template>
@@ -11,7 +18,7 @@
         </div>
     </div>
 </template>
-ß
+
 <style scoped>
 
 </style>

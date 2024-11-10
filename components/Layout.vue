@@ -14,4 +14,4 @@
 
 <style scoped>
 
-</style>ß
+</style>
