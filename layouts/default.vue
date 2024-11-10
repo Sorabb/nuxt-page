@@ -1,12 +1,5 @@
 <script setup lang="ts">
-import axios from 'axios'
-function contactForm() {
-    axios.post('/api/user')
-        .then((res) => {
-            console.log('GET MOCK USER====', res.data)
-        })
-}
-contactForm()
+
 </script>
 
 <template>

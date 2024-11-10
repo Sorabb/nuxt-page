@@ -3,7 +3,7 @@ import Mock from "mockjs"
 
 export default defineNuxtPlugin(nuxtApp => {
     Mock.mock(/api\/user/, 'post',{
-        code: '001',
+        code: 200,
         msg: '请求成功'
     })
     Mock.mock(/api\/user2/, 'post',{
