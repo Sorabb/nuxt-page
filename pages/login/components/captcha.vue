@@ -1,5 +1,5 @@
 <template>
-    <canvas ref="canvas" height='32px' width='100%' @click="refresh" style="display: block"></canvas>
+    <canvas ref="canvasRef" height='32px' width='100%' @click="refresh" style="display: block"></canvas>
 </template>
 <script setup>
 import { ref } from 'vue';
@@ -21,10 +21,10 @@ const setting = {
     dotNum: 30
 };
 const words = '1234567890';
-const canvas = ref(null);
+const canvasRef = ref(null);
 
 const drawPic = (code) => {
-    const ctx = canvas.value.getContext('2d');
+    const ctx = canvasRef.value.getContext('2d');
     ctx.fillStyle = randomColor(
         setting.backgroundColorMin,
         setting.backgroundColorMax

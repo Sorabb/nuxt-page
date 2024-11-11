@@ -41,7 +41,7 @@
                             <el-input v-model="formValue.captch" />
                         </el-col>
                         <el-col :span="9" style="padding-left: 20px">
-                            <captcha v-model:code="captchaRef"></captcha>
+                            <captcha v-model:code="captchaValue"></captcha>
                         </el-col>
                     </el-form-item>
                 </el-form>
@@ -65,11 +65,11 @@ const formValue = reactive({
     captch: '',
 });
 
-const captchaRef = ref();
+const captchaValue = ref();
 const formRef = ref();
 const login = () => {
     formRef.value.validate((data) => {
-        if (formValue.captch != captchaRef.value) {
+        if (formValue.captch != captchaValue.value) {
             ElMessage.error('请输入正确的验证码');
             return;
         }
