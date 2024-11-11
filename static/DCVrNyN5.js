@@ -1,1 +1,0 @@
-import{_ as n,v as s,x as e,a6 as a,t as o}from"./-dbA6Ya3.js";const l={},r=e("header",null,"header",-1),c=e("div",null,"menu",-1);function d(t,_){return o(),s("div",null,[r,e("div",null,[c,a(t.$slots,"default")])])}const f=n(l,[["render",d]]);export{f as default};
