@@ -15,6 +15,7 @@
     "element-plus": "^2.8.7",
     "mockjs": "^1.1.0",
     "nuxt": "^3.12.4",
+    "nuxt-storage": "^1.2.2",
     "vue": "latest"
   },
   "devDependencies": {

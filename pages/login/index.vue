@@ -56,6 +56,7 @@
 <script setup>
 import axios from 'axios';
 import { reactive, ref } from 'vue';
+import { setData } from 'nuxt-storage/local-storage';
 import { ElMessage } from 'element-plus';
 import Captcha from './components/captcha.vue';
 
@@ -67,6 +68,8 @@ const formValue = reactive({
 
 const captchaValue = ref();
 const formRef = ref();
+const router = useRouter();
+
 const login = () => {
     formRef.value.validate((data) => {
         if (formValue.captch != captchaValue.value) {
@@ -76,11 +79,13 @@ const login = () => {
         axios.post('/api/user')
             .then((res) => {
                 console.log('GET MOCK USER====', res.data);
+                setData('token',res.data.token);
                 if(res.data.code === 200) {
                     ElMessage({
-                        message: '登录成功',
+                        message: res.data.msg,
                         type: 'success',
                     });
+                    router.push('/');
                     return;
                 }
             });
