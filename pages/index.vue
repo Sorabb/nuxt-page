@@ -1,7 +1,7 @@
 
 <template>
     <div>
-        home11
+        home
     </div>
 </template>
 <script setup>
