@@ -10,6 +10,7 @@
                 <el-form :model="formValue"
                          ref="formRef"
                          label-width="auto"
+                         @keyup.enter="login"
                 >
                     <div :style="`font-size: var(--el-font-size-title);line-height:4;text-align:center`">系统登录</div>
                     <el-form-item label="用户名" prop="username" :rules="[
@@ -19,7 +20,7 @@
                           trigger: 'blur',
                         },
                       ]">
-                        <el-input v-model="formValue.username" />
+                        <el-input :prefix-icon="ElIconUser" v-model="formValue.username" />
                     </el-form-item>
                     <el-form-item label="密码" prop="password" :rules="[
                         {
@@ -28,7 +29,7 @@
                           trigger: 'blur',
                         },
                       ]">
-                        <el-input v-model="formValue.password" type="password" show-password />
+                        <el-input :prefix-icon="ElIconLock" v-model="formValue.password" type="password" show-password />
                     </el-form-item>
                     <el-form-item label="验证码" prop="captch" width="60%" :rules="[
                         {
@@ -38,7 +39,7 @@
                         },
                       ]">
                         <el-col :span="15">
-                            <el-input v-model="formValue.captch" />
+                            <el-input :prefix-icon="ElIconPostcard" v-model="formValue.captch" />
                         </el-col>
                         <el-col :span="9" style="padding-left: 20px">
                             <captcha v-model:code="captchaValue"></captcha>
@@ -59,7 +60,7 @@ import { reactive, ref } from 'vue';
 import { setData } from 'nuxt-storage/local-storage';
 import { ElMessage } from 'element-plus';
 import Captcha from './components/captcha.vue';
-
+const token = useCookie('token');
 const formValue = reactive({
     username: '',
     password: '',
@@ -79,12 +80,12 @@ const login = () => {
         axios.post('/api/user')
             .then((res) => {
                 console.log('GET MOCK USER====', res.data);
-                setData('token',res.data.token);
                 if(res.data.code === 200) {
                     ElMessage({
                         message: res.data.msg,
                         type: 'success',
                     });
+                    token.value = res.data.token;
                     router.push('/');
                     return;
                 }

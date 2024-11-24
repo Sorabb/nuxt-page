@@ -8,6 +8,7 @@ export default defineNuxtConfig({
     payloadExtraction: false,
   },
   devtools: { enabled: true },
+  ssr: false,
   modules: ['@element-plus/nuxt'],
   devServer: {
     port: 11345,
