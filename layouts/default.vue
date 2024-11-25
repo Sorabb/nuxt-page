@@ -4,7 +4,7 @@
             id: 1,
             menu_name: '首页',
             path: '/',
-            icon_name: 'ElIconHomeFilled',
+            icon_name: 'ElIconHouse',
             children: null,
         },
         {
@@ -35,10 +35,6 @@
             ]
         }
     ]
-    const icons = {
-        ElIconHomeFilled: ElIconHomeFilled,
-        ElIconSetting: ElIconSetting
-    }
 </script>
 
 <template>
@@ -57,7 +53,9 @@
                 >
                     <template v-for="item in menuData">
                         <el-sub-menu  v-if="item.children && item.children.length > 0" :index="String(item.id)">
+
                             <template #title>
+                                <IconList :name="item.icon_name"></IconList>
                                 {{item.menu_name}}
                             </template>
                             <el-menu-item  v-for="childrenItem in item.children" :index="String(childrenItem.id)">
@@ -67,8 +65,8 @@
                             </el-menu-item>
                         </el-sub-menu>
                         <el-menu-item v-else :index="String(item.id)">
-                            <el-icon><component :is="icons[item.icon_name]"></component></el-icon>
                             <template #title>
+                                <IconList :name="item.icon_name"></IconList>
                                 {{item.menu_name}}
                             </template>
                         </el-menu-item>

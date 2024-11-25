@@ -42,7 +42,7 @@
                             <el-input :prefix-icon="ElIconPostcard" v-model="formValue.captch" />
                         </el-col>
                         <el-col :span="9" style="padding-left: 20px">
-                            <captcha v-model:code="captchaValue"></captcha>
+                            <Captcha v-model:code="captchaValue"></Captcha>
                         </el-col>
                     </el-form-item>
                 </el-form>
@@ -59,7 +59,6 @@ import axios from 'axios';
 import { reactive, ref } from 'vue';
 import { setData } from 'nuxt-storage/local-storage';
 import { ElMessage } from 'element-plus';
-import Captcha from './components/captcha.vue';
 const token = useCookie('token');
 const formValue = reactive({
     username: '',

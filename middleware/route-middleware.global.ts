@@ -1,7 +1,7 @@
 
 
 import axios from 'axios';
-import routeData from '~/settings/route-list.ts';
+import routeData from '~/utils/route-list.ts';
 
 export default defineNuxtRouteMiddleware((to, from) => {
 
