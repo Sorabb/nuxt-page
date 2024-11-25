@@ -1,8 +1,7 @@
 
-import { getData, setData } from 'nuxt-storage/local-storage';
 
 import axios from 'axios';
-import routeData from '~/static/route-list.ts';
+import routeData from '~/settings/route-list.ts';
 
 export default defineNuxtRouteMiddleware((to, from) => {
 
