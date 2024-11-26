@@ -17,6 +17,9 @@ export default defineNuxtRouteMiddleware((to, from) => {
     if (!staticList.includes(to.path)) {
         if (token.value) {
             checkLogin();
+            if (to.path === '/') {
+                return navigateTo('/dashboard');
+            }
         } else {
             console.log('notoken')
             return navigateTo('/login');

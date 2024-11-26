@@ -1,6 +1,6 @@
 <script setup>
 const props = defineProps({name: String});
-console.log(props,props.name);
+
 const icons = {
     ElIconHouse: ElIconHouse,
     ElIconSetting: ElIconSetting

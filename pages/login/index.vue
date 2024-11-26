@@ -2,7 +2,7 @@
     <el-container :style="{height: '100vh'}">
         <el-aside width="40%"
                   style="display:flex;align-items: center;justify-content: center;background: #ccc">
-            这是登录背景
+            这是背景
         </el-aside>
         <el-main
             style="display:flex;align-items: center;justify-content: center;background: #eee">

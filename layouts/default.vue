@@ -1,9 +1,10 @@
 <script setup lang="ts">
+    const route = useRoute();
     const menuData = [
         {
             id: 1,
             menu_name: '首页',
-            path: '/',
+            path: '/dashboard',
             icon_name: 'ElIconHouse',
             children: null,
         },
@@ -40,31 +41,36 @@
 <template>
     <el-container class="container">
         <el-header class="header">
-            icon
-            header
-            user-icon
-            user-name
+            <div class="logo">logo</div>
+            <div class="title">demo平台</div>
+            <div class="user">
+                <span class="img"></span>
+                <span>
+                    user-name
+                </span>
+            </div>
+
         </el-header>
         <el-container>
             <el-aside class="aside">
                 <el-menu
-                    :collapse="false"
+                    :default-active="route.path"
+                    router
                     style="width: 100%;height: 100%;"
                 >
                     <template v-for="item in menuData">
-                        <el-sub-menu  v-if="item.children && item.children.length > 0" :index="String(item.id)">
-
+                        <el-sub-menu  v-if="item.children && item.children.length > 0" :index="String(item.path)">
                             <template #title>
                                 <IconList :name="item.icon_name"></IconList>
                                 {{item.menu_name}}
                             </template>
-                            <el-menu-item  v-for="childrenItem in item.children" :index="String(childrenItem.id)">
+                            <el-menu-item  v-for="childrenItem in item.children" :index="String(childrenItem.path)">
                                 <template #title>
                                     {{childrenItem.menu_name}}
                                 </template>
                             </el-menu-item>
                         </el-sub-menu>
-                        <el-menu-item v-else :index="String(item.id)">
+                        <el-menu-item v-else :index="String(item.path)">
                             <template #title>
                                 <IconList :name="item.icon_name"></IconList>
                                 {{item.menu_name}}
@@ -98,9 +104,38 @@
         min-height: 100vh;
     }
     .header {
+        display: flex;
         background: #ffffff;
-        height: 60px;
+        align-items: center;
         border-bottom: 1px solid #ebebeb;
+        .logo {
+            height: 30px;
+            width: 60px;
+            background: #1890FF;
+            margin-right: 20px;
+            border-radius: 4px;
+            text-align: center;
+            line-height: 30px;
+            color: #fff;
+        }
+        .title {
+            flex: 1;
+        }
+        .user {
+            cursor: pointer;
+            .img {
+                display: inline-block;
+                height: 20px;
+                width: 20px;
+                background: #1890FF;
+                border-radius: 50%;
+                vertical-align: middle;
+            }
+            span {
+                vertical-align: middle;
+                line-height: 20px;
+            }
+        }
     }
     .aside {
         background: #ffffff;
