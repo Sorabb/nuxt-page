@@ -1,5 +1,9 @@
 <script setup lang="ts">
     const route = useRoute();
+    console.log(route.matched);
+    watchEffect(() => {
+        console.log(route.matched,1);
+    })
     const menuData = [
         {
             id: 1,
@@ -31,6 +35,11 @@
                 {
                     id: 6,
                     path: '/setting/dict-setting',
+                    menu_name: '字典管理',
+                },
+                {
+                    id: 7,
+                    path: '/setting',
                     menu_name: '字典管理',
                 }
             ]

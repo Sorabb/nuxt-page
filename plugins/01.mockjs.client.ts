@@ -13,8 +13,11 @@ export default defineNuxtPlugin(nuxtApp => {
         return {
             code: 200,
             data: {
-                id: 1,
-                username: 'a'
+                user: {
+                    id: 1,
+                    username: 'a'
+                },
+                menu: [],
             },
             msg: '登录成功'
         }
