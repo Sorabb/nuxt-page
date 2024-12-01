@@ -9,7 +9,8 @@ export default defineNuxtConfig({
   },
   devtools: { enabled: true },
   ssr: false,
-  modules: ['@element-plus/nuxt'],
+  spaLoadingTemplate: 'spa-loading-template.html',
+  modules: ['@element-plus/nuxt','@pinia/nuxt'],
   devServer: {
     port: 11345,
   }

@@ -11,13 +11,15 @@
     "cleanup": "nuxt cleanup"
   },
   "dependencies": {
+    "@pinia/nuxt": "^0.8.0",
     "axios": "^1.7.7",
     "echarts": "^5.5.1",
     "element-plus": "^2.8.7",
     "mockjs": "^1.1.0",
-    "nuxt": "^3.12.4",
+    "nuxt": "^3.14.159",
     "nuxt-storage": "^1.2.2",
-    "vue": "latest"
+    "pinia": "^2.2.8",
+    "vue": "^3.5.13"
   },
   "devDependencies": {
     "@element-plus/nuxt": "^1.1.0"

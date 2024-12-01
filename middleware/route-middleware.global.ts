@@ -3,29 +3,27 @@ import routeData from '~/utils/route-list.ts';
 
 export default defineNuxtRouteMiddleware(async (to, from) => {
 
-    console.log('mid run',to.path)
     const token = useCookie('token');
-    const checkLogin = async () => {
-        return await axios.post('/api/getUserInfo', {
-            token: token.value
-        }).then((res) => {
-            console.log(res, 1);
-            return res;
-        });
+    const userStore = useUserStore()
+    const { user,updateUser } = userStore;
+    console.log(user,'user')
+    if (!user) {
+        console.log('getuser')
+        if (token.value) {
+            await axios.post('/api/getUserInfo', {
+                token: token.value
+            }).then((res) => {
+                if (res.data.code == '200') {
+                    updateUser(res.data.data);
+                }
+                return res;
+            });
+        }
     }
     const { staticList } = routeData;
-    console.log(token)
-    if (!token.value) {
-        console.log('token not found');
-        return abortNavigation()
-    } else {
-        return abortNavigation()
-    }
 
     if (!staticList.includes(to.path)) {
         if (token.value) {
-            const userInfoRes = await checkLogin();
-            console.log(userInfoRes,3);
             if (to.path === '/') {
                 return navigateTo('/dashboard');
             } else if (to.path === '/login') {

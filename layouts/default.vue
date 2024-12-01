@@ -1,62 +1,31 @@
 <script setup lang="ts">
     const route = useRoute();
-    console.log(route.matched);
-    watchEffect(() => {
-        console.log(route.matched,1);
-    })
-    const menuData = [
-        {
-            id: 1,
-            menu_name: '首页',
-            path: '/dashboard',
-            icon_name: 'ElIconHouse',
-            children: null,
-        },
-        {
-            id: 2,
-            menu_name: '系统设置',
-            icon_name: 'ElIconSetting',
-            children: [
-                {
-                    id: 3,
-                    path: '/setting/user-setting',
-                    menu_name: '用户管理',
-                },
-                {
-                    id: 4,
-                    path: '/setting/role-setting',
-                    menu_name: '角色管理',
-                },
-                {
-                    id: 5,
-                    path: '/setting/menu-setting',
-                    menu_name: '菜单管理',
-                },
-                {
-                    id: 6,
-                    path: '/setting/dict-setting',
-                    menu_name: '字典管理',
-                },
-                {
-                    id: 7,
-                    path: '/setting',
-                    menu_name: '字典管理',
-                }
-            ]
-        }
-    ]
+    const user = useUserStore();
+    const userInfo = user.user;
+    const menuData = user.menu;
+    const token = useCookie('token');
+    const logout = () => {
+        token.value = null;
+        navigateTo('/login');
+    }
 </script>
-
 <template>
     <el-container class="container">
         <el-header class="header">
             <div class="logo">logo</div>
             <div class="title">demo平台</div>
             <div class="user">
-                <span class="img"></span>
+                <span class="img" style="margin-right: 5px"></span>
+                <el-dropdown trigger="click">
                 <span>
-                    user-name
+                    {{userInfo.username}}
                 </span>
+                    <template #dropdown>
+                    <el-dropdown-menu>
+                        <el-dropdown-item @click="logout">登出</el-dropdown-item>
+                    </el-dropdown-menu>
+                    </template>
+                </el-dropdown>
             </div>
 
         </el-header>
@@ -86,11 +55,6 @@
                             </template>
                         </el-menu-item>
                     </template>
-<!--                    <el-menu-item>
-                        <template #title>
-                            end
-                        </template>
-                    </el-menu-item>-->
                 </el-menu>
             </el-aside>
             <el-container  class="content">
@@ -157,7 +121,6 @@
         .main {
             padding: 6px 20px 0;
             .wrapper {
-                background: #ffffff;
                 height: 100%;
                 width: 100%;
             }
