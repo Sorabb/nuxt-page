@@ -1,6 +1,5 @@
-
 <template>
-    <div style="padding: 20px">
+    <div style="padding:20px 0">
         <el-card style="margin-bottom: 20px">
             <template #header>
                 <div class="card-header">
@@ -14,7 +13,6 @@
                     </div>
                     <el-divider style="height: 40px" v-if="i!=4" direction="vertical" />
                 </div>
-
             </el-space>
         </el-card>
         <el-card>
@@ -28,7 +26,6 @@
             </div>
         </el-card>
     </div>
-
 </template>
 <script setup>
 

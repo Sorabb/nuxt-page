@@ -3,11 +3,36 @@
     const user = useUserStore();
     const userInfo = user.user;
     const menuData = user.menu;
+    const breadcrumbArray = ref([]);
     const token = useCookie('token');
     const logout = () => {
         token.value = null;
         navigateTo('/login');
     }
+    const menuMap = new Map();
+    const mapFunction = (menuData:any) => {
+        menuMap.clear();
+        const travel = (list:[],parentPath?:any) => {
+            for (const item of list) {
+                let path = [item.menu_name];
+                if (parentPath) {
+                    path = parentPath.concat(path);
+                }
+                menuMap.set(item.path, path);
+                if (item.children?.length > 0) {
+                    travel(item.children,path);
+                }
+            }
+        }
+        travel(menuData);
+    }
+    if (menuData?.length > 0) {
+        mapFunction(menuData);
+    }
+    watchEffect(()=> {
+        console.log(route.path)
+        breadcrumbArray.value = menuMap.get(route.path);
+    })
 </script>
 <template>
     <el-container class="container">
@@ -60,6 +85,13 @@
             <el-container  class="content">
                 <el-main class="main">
                     <div class="wrapper">
+                        <div style="padding-top: 10px">
+                            <el-breadcrumb :separator-icon="ElIconArrowRight">
+                                <el-breadcrumb-item v-for="item in breadcrumbArray">
+                                    {{item}}
+                                </el-breadcrumb-item>
+                            </el-breadcrumb>
+                        </div>
                         <slot />
                     </div>
 
@@ -121,6 +153,7 @@
         .main {
             padding: 6px 20px 0;
             .wrapper {
+                box-sizing: border-box;
                 height: 100%;
                 width: 100%;
             }
