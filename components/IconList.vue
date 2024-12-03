@@ -3,9 +3,13 @@ const props = defineProps({name: String});
 
 const icons = {
     ElIconHouse: ElIconHouse,
-    ElIconSetting: ElIconSetting
+    ElIconSetting: ElIconSetting,
+    ElIconDocument: ElIconDocument,
+    ElIconNotebook: ElIconNotebook,
+    ElIconTickets: ElIconTickets,
+    ElIconMemo: ElIconMemo,
 }
 </script>
 <template>
-    <el-icon><component :is="icons[props.name]"></component></el-icon>
+    <component :is="icons[props.name]"></component>
 </template>

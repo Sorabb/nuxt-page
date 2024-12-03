@@ -5,6 +5,7 @@
     const menuData = user.menu;
     const breadcrumbArray = ref([]);
     const token = useCookie('token');
+    const {$log} = useNuxtApp();
     const logout = () => {
         token.value = null;
         navigateTo('/login');
@@ -14,7 +15,7 @@
         menuMap.clear();
         const travel = (list:[],parentPath?:any) => {
             for (const item of list) {
-                let path = [item.menu_name];
+                let path = [item];
                 if (parentPath) {
                     path = parentPath.concat(path);
                 }
@@ -30,7 +31,7 @@
         mapFunction(menuData);
     }
     watchEffect(()=> {
-        console.log(route.path)
+        $log(route.path)
         breadcrumbArray.value = menuMap.get(route.path);
     })
 </script>
@@ -64,7 +65,7 @@
                     <template v-for="item in menuData">
                         <el-sub-menu  v-if="item.children && item.children.length > 0" :index="String(item.path)">
                             <template #title>
-                                <IconList :name="item.icon_name"></IconList>
+                                <el-icon><IconList :name="item.icon_name"></IconList></el-icon>
                                 {{item.menu_name}}
                             </template>
                             <el-menu-item  v-for="childrenItem in item.children" :index="String(childrenItem.path)">
@@ -75,7 +76,7 @@
                         </el-sub-menu>
                         <el-menu-item v-else :index="String(item.path)">
                             <template #title>
-                                <IconList :name="item.icon_name"></IconList>
+                                <el-icon><IconList :name="item.icon_name"></IconList></el-icon>
                                 {{item.menu_name}}
                             </template>
                         </el-menu-item>
@@ -88,11 +89,14 @@
                         <div style="padding-top: 10px">
                             <el-breadcrumb :separator-icon="ElIconArrowRight">
                                 <el-breadcrumb-item v-for="item in breadcrumbArray">
-                                    {{item}}
+                                    {{item.menu_name}}
                                 </el-breadcrumb-item>
                             </el-breadcrumb>
                         </div>
-                        <slot />
+                        <div style="padding: 20px 0">
+                            <slot />
+                        </div>
+
                     </div>
 
                 </el-main>

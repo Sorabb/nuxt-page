@@ -69,16 +69,17 @@ const formValue = reactive({
 const captchaValue = ref();
 const formRef = ref();
 const router = useRouter();
+const {$log} = useNuxtApp();
 
 const login = () => {
     formRef.value.validate((data) => {
-        if (formValue.captch != captchaValue.value) {
+        if (formValue.captch !== captchaValue.value) {
             ElMessage.error('请输入正确的验证码');
             return;
         }
         axios.post('/api/user')
             .then((res) => {
-                console.log('GET MOCK USER====', res.data);
+                $log('GET MOCK USER====', res.data);
                 if(res.data.code === 200) {
                     ElMessage({
                         message: res.data.msg,

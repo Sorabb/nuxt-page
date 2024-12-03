@@ -6,9 +6,9 @@ export default defineNuxtRouteMiddleware(async (to, from) => {
     const token = useCookie('token');
     const userStore = useUserStore()
     const { user,updateUser } = userStore;
-    console.log(user,'user')
+    // console.log(user,'user')
     if (!user) {
-        console.log('getuser')
+        // console.log('getuser')
         if (token.value) {
             await axios.post('/api/getUserInfo', {
                 token: token.value
@@ -30,7 +30,7 @@ export default defineNuxtRouteMiddleware(async (to, from) => {
                 return navigateTo('/dashboard');
             }
         } else {
-            console.log('notoken')
+            // console.log('notoken')
             return navigateTo('/login');
         }
     }

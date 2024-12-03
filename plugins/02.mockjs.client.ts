@@ -1,8 +1,10 @@
 import Mock from "mockjs"
 
 
-export default defineNuxtPlugin(nuxtApp => {
-    const timeout = process.env.NODE_ENV == "development" ? 0 : 500;
+export default defineNuxtPlugin((nuxtApp) => {
+    const {$log} = nuxtApp;
+    const timeout = process.env.NODE_ENV == "development" ? 200 : 500;
+
     Mock.setup({
         timeout: timeout
     })
@@ -13,7 +15,7 @@ export default defineNuxtPlugin(nuxtApp => {
     })
     Mock.mock(/api\/getUserInfo/, 'post',(req) => {
         // check token validity
-        console.log(req);
+        // $log(req);
         return {
             code: 200,
             data: {
@@ -64,5 +66,30 @@ export default defineNuxtPlugin(nuxtApp => {
     })
     Mock.mock(/api\/test/, 'get',{
         token: 'ey' + Mock.Random.string(10) + 'te_'
+    })
+    Mock.mock(/api\/dashboard/, 'get',{
+        code: 200,
+        data: {
+            data1: {
+                "icon": 'ElIconDocument',
+                "title": '数据1',
+                "num|1-100000": 0
+            },
+            data2: {
+                "icon": 'ElIconNotebook',
+                "title": '数据2',
+                "num|1-1000000": 0
+            },
+            data3: {
+                "icon": 'ElIconTickets',
+                "title": '数据3',
+                "num|1-10000": 0
+            },
+            data4: {
+                "icon": 'ElIconMemo',
+                "title": '数据4',
+                "num|1-10000000": 0
+            },
+        }
     })
 })
