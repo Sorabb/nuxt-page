@@ -5,7 +5,6 @@
     const menuData = user.menu;
     const breadcrumbArray = ref([]);
     const token = useCookie('token');
-    const {$log} = useNuxtApp();
     const logout = () => {
         token.value = null;
         navigateTo('/login');
@@ -31,7 +30,6 @@
         mapFunction(menuData);
     }
     watchEffect(()=> {
-        $log(route.path)
         breadcrumbArray.value = menuMap.get(route.path);
     })
 </script>

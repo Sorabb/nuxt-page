@@ -1,21 +1,24 @@
-import Mock from "mockjs"
+import Mock from "mockjs";
+import dayjs from "dayjs";
 
 
 export default defineNuxtPlugin((nuxtApp) => {
-    const {$log} = nuxtApp;
     const timeout = process.env.NODE_ENV == "development" ? 200 : 500;
 
-    Mock.setup({
+    const createNum = (min,max) => {
+        return Mock.Random.integer(min,max)
+    }
+        Mock.setup({
         timeout: timeout
     })
-    Mock.mock(/api\/user/, 'post',{
+    Mock.mock('/api/user', 'post',{
         code: 200,
         token: 'ey' + Mock.Random.string(10) + '_ct_' + Date.now().toString(),
         msg: '登录成功'
     })
-    Mock.mock(/api\/getUserInfo/, 'post',(req) => {
+    Mock.mock('/api/getUserInfo', 'post',(req) => {
         // check token validity
-        // $log(req);
+        // console.log(req);
         return {
             code: 200,
             data: {
@@ -64,32 +67,108 @@ export default defineNuxtPlugin((nuxtApp) => {
         }
 
     })
-    Mock.mock(/api\/test/, 'get',{
+    Mock.mock('/api/test', 'get',{
         token: 'ey' + Mock.Random.string(10) + 'te_'
     })
-    Mock.mock(/api\/dashboard/, 'get',{
-        code: 200,
-        data: {
-            data1: {
-                "icon": 'ElIconDocument',
-                "title": '数据1',
-                "num|1-100000": 0
-            },
-            data2: {
-                "icon": 'ElIconNotebook',
-                "title": '数据2',
-                "num|1-1000000": 0
-            },
-            data3: {
-                "icon": 'ElIconTickets',
-                "title": '数据3',
-                "num|1-10000": 0
-            },
-            data4: {
-                "icon": 'ElIconMemo',
-                "title": '数据4',
-                "num|1-10000000": 0
-            },
+    Mock.mock('/api/dashboard', 'get', (req) => {
+        const timeArray = [];
+        let index = 3;
+        const subNum = createNum(1,7);
+        for (let i = 3; i >= 0; i--) {
+            const time = dayjs().subtract(i * 7 + subNum,'day').format('YYYY-MM-DD');
+            timeArray.push(time);
+        }
+        const createLinesData = (min,max) => {
+            const returnArray = [];
+            for (let i = 0; i < 2; i++) {
+                const itemArry = [];
+                for (let j = 0; j < 4; j++) {
+                    itemArry.push(createNum(min,max));
+                }
+                returnArray.push(itemArry);
+            }
+            return returnArray;
+        }
+
+        return {
+            code: 200,
+            data: {
+                time: timeArray,
+                data1: {
+                    "icon": 'ElIconDocument',
+                    "title": '数据1',
+                    "num": createNum(10000,100000),
+                    "lines": createLinesData(10000,100000)
+                },
+                data2: {
+                    "icon": 'ElIconNotebook',
+                    "title": '数据2',
+                    "num": createNum(100000,1000000),
+                    "lines": createLinesData(100000,1000000)
+                },
+                data3: {
+                    "icon": 'ElIconTickets',
+                    "title": '数据3',
+                    "num": createNum(1000,10000),
+                    "lines": createLinesData(1000,10000)
+                },
+                data4: {
+                    "icon": 'ElIconMemo',
+                    "title": '数据4',
+                    "num": createNum(1000000,10000000),
+                    "lines": createLinesData(1000000,10000000)
+                },
+            }
+        }
+    })
+    Mock.mock('/api/dashboard/pie', 'get', (req) => {
+        const createPieData = (min,max) => {
+            const returnArray = [];
+            for (let i = 0; i < 4; i++) {
+                const item = {
+                    name: Mock.Random.cname(),
+                    value: createNum(1,99)
+                }
+                returnArray.push(item);
+            }
+            return returnArray;
+        }
+        const resultData = createPieData();
+        return {
+            code: 200,
+            data: resultData
+        }
+    })
+    Mock.mock('/api/dashboard/bar', 'get', (req) => {
+        const createBarData = (min,max) => {
+            const returnArray = [];
+            for (let i = 0; i < 6; i++) {
+                const item = {
+                    name: Mock.Random.cname(),
+                    value1: createNum(1,99),
+                    value2: createNum(1,99),
+                    value3: createNum(1,99)
+                }
+                returnArray.push(item);
+            }
+            return returnArray;
+        }
+        const resultData = createBarData();
+        return {
+            code: 200,
+            data: resultData
+        }
+    })
+    Mock.mock('/error','get', (req) => {
+        return {
+            code: 500,
+            msg: '请求错误'
+        }
+    })
+    Mock.mock('/logtimeout','get', (req) => {
+        return {
+            code: 400,
+            msg: '登录过期'
         }
     })
 })

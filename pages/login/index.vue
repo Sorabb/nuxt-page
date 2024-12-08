@@ -69,7 +69,6 @@ const formValue = reactive({
 const captchaValue = ref();
 const formRef = ref();
 const router = useRouter();
-const {$log} = useNuxtApp();
 
 const login = () => {
     formRef.value.validate((data) => {
@@ -79,7 +78,7 @@ const login = () => {
         }
         axios.post('/api/user')
             .then((res) => {
-                $log('GET MOCK USER====', res.data);
+                console.log('GET MOCK USER====', res.data);
                 if(res.data.code === 200) {
                     ElMessage({
                         message: res.data.msg,
