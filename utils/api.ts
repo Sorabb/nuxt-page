@@ -10,7 +10,7 @@ instance.interceptors.response.use(function (response) {
         console.log(500)
     } else {
         console.log(response.data.code)
-        navigateTo('/about');
+        //navigateTo('/about');
     }
 }, function (error) {
     // 超出 2xx 范围的状态码都会触发该函数。
@@ -27,6 +27,20 @@ export const getDashboardPie = async () => {
 }
 export const getDashboardBar = async () => {
     const data =  await instance.get('/api/dashboard/bar');
+    return data;
+}
+export const getTableData = async (params) => {
+    const data =  await instance.get('/api/table/list',{
+        params
+    });
+    return data;
+}
+export const deleteTableData = async (params) => {
+    const data =  await instance.post('/api/table/delete',params);
+    return data;
+}
+export const editTableData = async (params) => {
+    const data =  await instance.post('/api/table/edit',params);
     return data;
 }
 export const getError = async () => {

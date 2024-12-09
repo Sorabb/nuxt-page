@@ -8,6 +8,7 @@ const icons = {
     ElIconNotebook: ElIconNotebook,
     ElIconTickets: ElIconTickets,
     ElIconMemo: ElIconMemo,
+    ElIconOperation: ElIconOperation,
 }
 </script>
 <template>

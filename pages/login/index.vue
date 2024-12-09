@@ -1,7 +1,7 @@
 <template>
     <el-container :style="{height: '100vh'}">
         <el-aside width="40%"
-                  style="display:flex;align-items: center;justify-content: center;background: #ccc">
+                  style="display:flex;align-items: center;justify-content: center;background: #1890FF;color: #fff">
             这是背景
         </el-aside>
         <el-main
@@ -61,8 +61,8 @@ import { setData } from 'nuxt-storage/local-storage';
 import { ElMessage } from 'element-plus';
 const token = useCookie('token');
 const formValue = reactive({
-    username: '',
-    password: '',
+    username: 'admin',
+    password: 'admin',
     captch: '',
 });
 

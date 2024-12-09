@@ -1,9 +1,7 @@
 <template>
     <el-card style="margin-bottom: 20px">
         <template #header>
-            <div class="card-header">
-                <span>数据卡片</span>
-            </div>
+            <span>数据卡片</span>
         </template>
         <el-space fill :fill-ratio=24 style="display: flex">
             <div style="display: flex;align-items: center" v-for="i in 4" :key="i">
@@ -27,9 +25,7 @@
     </el-card>
     <el-card style="margin-bottom: 20px;">
         <template #header>
-            <div class="card-header">
-                <span>图表卡片</span>
-            </div>
+            <span>图表卡片</span>
         </template>
         <dashboard-line-chart :time="dashboardData.time" :chart-data="dashboardData[selectChart].lines"></dashboard-line-chart>
     </el-card>
