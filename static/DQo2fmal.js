@@ -1,0 +1,1 @@
+import{E as r}from"./Bdrz-lpJ.js";import{a0 as s,A as e,t as a,x as o}from"./BHeDfaNv.js";import{_ as l}from"./DlAUqK2U.js";import"./CqGSI99y.js";const m={};function d(i,t){const n=r;return a(),s(n,null,{header:e(()=>t[0]||(t[0]=[o("span",null,"menu-setting",-1)])),default:e(()=>[t[1]||(t[1]=o("div",null," todo ",-1))]),_:1})}const c=l(m,[["render",d]]);export{c as default};
