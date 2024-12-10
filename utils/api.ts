@@ -18,36 +18,28 @@ instance.interceptors.response.use(function (response) {
     return Promise.reject(error);
 });
 export const getDashboard = async () => {
-    const data =  await instance.get('/api/dashboard');
-    return data;
+    return await instance.get('/api/dashboard');
 }
 export const getDashboardPie = async () => {
-    const data =  await instance.get('/api/dashboard/pie');
-    return data;
+    return await instance.get('/api/dashboard/pie');
 }
 export const getDashboardBar = async () => {
-    const data =  await instance.get('/api/dashboard/bar');
-    return data;
+    return  await instance.get('/api/dashboard/bar');
 }
 export const getTableData = async (params) => {
-    const data =  await instance.get('/api/table/list',{
+    return await instance.get('/api/table/list',{
         params
     });
-    return data;
 }
 export const deleteTableData = async (params) => {
-    const data =  await instance.post('/api/table/delete',params);
-    return data;
+    return await instance.post('/api/table/delete',params);
 }
 export const editTableData = async (params) => {
-    const data =  await instance.post('/api/table/edit',params);
-    return data;
+    return await instance.post('/api/table/edit',params);
 }
 export const getError = async () => {
-    const data =  await instance.get('/error');
-    return data;
+    return await instance.get('/error');
 }
 export const getLogtimeout = async () => {
-    const data =  await instance.get('/logtimeout');
-    return data;
+    return await instance.get('/logtimeout');
 }

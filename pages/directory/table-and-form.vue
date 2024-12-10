@@ -142,7 +142,7 @@ const onReset = () => {
         <el-pagination
             style="margin-top: 20px;"
             size="small"
-            layout=" ->, prev, pager, next"
+            layout=" ->, total, prev, pager, next"
             :current-page="page"
             background
             @current-change="handleCurrentChange"
