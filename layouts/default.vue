@@ -29,6 +29,14 @@
     if (menuData?.length > 0) {
         mapFunction(menuData);
     }
+    const openProject = () => {
+        navigateTo('https://github.com/Sorabb/nuxt-page', {
+            open: {
+                target: '_blank',
+            }
+        })
+
+    }
     watchEffect(()=> {
         breadcrumbArray.value = menuMap.get(route.path);
     })
@@ -38,6 +46,11 @@
         <el-header class="header">
             <div class="logo">logo</div>
             <div class="title">demo平台</div>
+            <div class="git">
+                <el-button style="margin-right: 20px" @click="openProject">
+                    <el-icon style="color: #1890FF"><ElIconPromotion /></el-icon>项目地址
+                </el-button>
+            </div>
             <div class="user">
                 <span class="img" style="margin-right: 5px"></span>
                 <el-dropdown trigger="click">
@@ -139,9 +152,11 @@
                 vertical-align: middle;
             }
             span {
-                vertical-align: middle;
                 line-height: 20px;
             }
+        }
+        .user :deep(.el-dropdown) {
+            vertical-align: middle;
         }
     }
     .aside {
