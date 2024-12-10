@@ -1,1 +1,0 @@
-import{z as n,A as a,B as s,C as c,D as l,F as r,G as m}from"./Bt5WWZhX.js";import{t as u,a0 as _,aI as i}from"./DACxOiZm.js";const E={__name:"IconList",props:{name:String},setup(o){const e=o,t={ElIconHouse:n,ElIconSetting:a,ElIconDocument:s,ElIconNotebook:c,ElIconTickets:l,ElIconMemo:r,ElIconOperation:m};return(p,f)=>(u(),_(i(t[e.name])))}};export{E as _};
