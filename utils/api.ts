@@ -37,6 +37,9 @@ export const deleteTableData = async (params) => {
 export const editTableData = async (params) => {
     return await instance.post('/api/table/edit',params);
 }
+export const addTableData = async (params) => {
+    return await instance.post('/api/table/add',params);
+}
 export const getError = async () => {
     return await instance.get('/error');
 }

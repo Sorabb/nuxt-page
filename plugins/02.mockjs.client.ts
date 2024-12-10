@@ -21,7 +21,7 @@ export default defineNuxtPlugin((nuxtApp) => {
 
 
     const tableStore = useTableStore();
-    const { list:tableList,updateData, deleteData, editData } = tableStore;
+    const { list:tableList,updateData, deleteData, editData, addData } = tableStore;
 
     const tableData = Mock.mock({
         "data|30-50": [
@@ -260,6 +260,14 @@ export default defineNuxtPlugin((nuxtApp) => {
     Mock.mock(/api\/table\/edit/,'post',(req) => {
         const targetEdit = JSON.parse(req.body);
         editData(targetEdit)
+        return {
+            code: 200,
+            data: '修改成功'
+        }
+    })
+    Mock.mock(/api\/table\/add/,'post',(req) => {
+        const targetAdd = JSON.parse(req.body);
+        addData(targetAdd)
         return {
             code: 200,
             data: '修改成功'

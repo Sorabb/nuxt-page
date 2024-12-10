@@ -59,6 +59,9 @@ const handleDelete = (_,item) => {
 const handleCurrentChange = (target) => {
     page.value = target;
 }
+const handleAdd = () => {
+    showAddModal.value = true;
+}
 const onQuery = () => {
     page.value = 1;
     searchValue.value = { ...searchForm.value };
@@ -94,6 +97,9 @@ const onReset = () => {
             </el-form-item>
             <el-form-item>
                 <el-button @click="onReset">重置</el-button>
+            </el-form-item>
+            <el-form-item>
+                <el-button type="primary" @click="handleAdd">新增</el-button>
             </el-form-item>
         </el-form>
         <el-table
@@ -151,6 +157,7 @@ const onReset = () => {
     </el-card>
     <TableEditModal v-model:showModal="showEditModal" :edit-data="editModalData" @refreshTable="onRefreshTable" />
     <TableDetailModal v-model:showModal="showDetailModal" :show-data="editModalData" />
+    <TableAddModal v-model:showModal="showAddModal" @refreshTable="onRefreshTable" />
 </template>
 
 <style scoped>

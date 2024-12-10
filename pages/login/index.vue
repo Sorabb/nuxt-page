@@ -71,24 +71,27 @@ const formRef = ref();
 const router = useRouter();
 
 const login = () => {
-    formRef.value.validate((data) => {
-        if (formValue.captch !== captchaValue.value) {
-            ElMessage.error('请输入正确的验证码');
-            return;
+    formRef.value.validate((result) => {
+        if (result) {
+            if (formValue.captch !== captchaValue.value) {
+                ElMessage.error('请输入正确的验证码');
+                return;
+            }
+            axios.post('/api/user')
+                .then((res) => {
+                    console.log('GET MOCK USER====', res.data);
+                    if(res.data.code === 200) {
+                        ElMessage({
+                            message: res.data.msg,
+                            type: 'success',
+                        });
+                        token.value = res.data.token;
+                        router.push('/');
+                        return;
+                    }
+                });
         }
-        axios.post('/api/user')
-            .then((res) => {
-                console.log('GET MOCK USER====', res.data);
-                if(res.data.code === 200) {
-                    ElMessage({
-                        message: res.data.msg,
-                        type: 'success',
-                    });
-                    token.value = res.data.token;
-                    router.push('/');
-                    return;
-                }
-            });
+
     });
 };
 

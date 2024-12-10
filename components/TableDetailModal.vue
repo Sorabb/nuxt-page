@@ -16,7 +16,7 @@ const closeModal = () => {
 
 <template>
     <el-dialog v-model="showModal"  title="详情" width="800" v-if="editForm">
-        <el-descriptions column="2">
+        <el-descriptions :column=2>
             <el-descriptions-item label="用户名">{{ editForm.name }}</el-descriptions-item>
             <el-descriptions-item label="性别">
                 <template v-if="editForm.gender == '01'">
