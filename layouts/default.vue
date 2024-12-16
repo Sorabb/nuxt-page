@@ -119,7 +119,7 @@
     </el-container>
 </template>
 
-<style scoped>
+<style lang="scss" scoped>
     .container {
         min-height: 100vh;
     }
@@ -154,10 +154,13 @@
             span {
                 line-height: 20px;
             }
+            :global(.el-dropdown) {
+                vertical-align: middle;
+            }
         }
-        .user :deep(.el-dropdown) {
+        /*.user :deep(.el-dropdown) {
             vertical-align: middle;
-        }
+        }*/
     }
     .aside {
         background: #ffffff;
